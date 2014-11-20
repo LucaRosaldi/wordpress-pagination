@@ -11,21 +11,21 @@
 /**
  * Get an array of page objects with text, class and link for each page.
  *
- * @param  integer  $range  Range of pages to show before and after the current page.
  * @param  array    $args   See the full list beside the defaults.
  * @return array            An array of page objects.
  *
  * @uses  $wp_query and $paged globals
  */
 if ( !function_exists( 'get_pagination' ) ) :
-function get_pagination( $range = 3, $args = array() ) {
+function get_pagination( $args = array() ) {
 
   $defaults = array(
-    'total_pages'  => '',    // Total number of pages ( $wp_query->max_num_pages ).
-    'class_prefix' => '',    // String to prepend to default classes ('first', 'next', 'current', ect. ).
-    'count'        => true,  // Show page count ( current page and total number of pages ).
-    'directional'  => true,  // Show previous and next page links.
-    'edges'        => true   // Show first and last page links.
+    'range'        => 3,      // Range of pages to show before and after the current page.
+    'total_pages'  => '',     // Total number of pages ( $wp_query->max_num_pages ).
+    'class_prefix' => '',     // String to prepend to default classes ('first', 'next', 'current', ect. ).
+    'count'        => true,   // Show page count ( current page and total number of pages ).
+    'directional'  => true,   // Show previous and next page links.
+    'edges'        => true    // Show first and last page links.
   );
   $args = wp_parse_args( $args, $defaults );
 
@@ -131,11 +131,12 @@ endif;
  * @uses  get_pagination()
  */
 if ( !function_exists( 'the_pagination' ) ) :
-function the_pagination( $range = 3, $args = array() ) {
+function the_pagination( $args = array() ) {
   
-  // If an array of pages is passed as the first parameter,
-  // set it as the paginaion array. Else, get array of pagination links.
-  $pagination = ( is_array( $range ) ) ? $range : get_pagination( $range, $args );
+  // If an array of pages is passed as the first parameter, set it as the pagination array.
+  // Else, get array of pagination links. We check for the current page, which is always 
+  // present, to see if this is an array of pages.
+  $pagination = ( !empty( $args['current'] ) ) ? $args : get_pagination( $args );
 
   if ( empty( $pagination ) ) { return; }
 
@@ -154,12 +155,12 @@ function the_pagination( $range = 3, $args = array() ) {
     $item   = $pagination['count'];
 
     $part   = array();
-    $part[] = "\t\t" . '<li class="' . $item->class . '"><span>';
+    $part[] = "\t\t" . '<li class="' . $item->class . '">';
     $part[] = '<span>' . __( 'Page', $theme_textdomain ) . '</span> ';
     $part[] = '<span class="current_page">' . $item->current_page . '</span> ';
     $part[] = '<span>' . __( 'of', $theme_textdomain ) . '</span> ';
     $part[] = '<span class="total_pages">' . $item->total_pages . '</span>';
-    $part[] = "\t\t" . '</span></li>';
+    $part[] = '</li>';
 
     $html[] = implode( '', $part );
     unset( $pagination['count'] );
