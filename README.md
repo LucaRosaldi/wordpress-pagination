@@ -1,10 +1,10 @@
 # WordPress Pagination
 
-This is a small collection of functions (two) that allow theme developers to show a pagination menu in pages which need it, without resorting to a plugin. If you ever heard of Kriesi pagination, you know what we’re talking about.
+This is a small collection of functions (two) that allow theme developers to show a pagination menu in pages which need it, without resorting to a plugin. If you ever heard of **Kriesi pagination**, you know what I’m talking about.
 
 #### Refactoring Kriesi’s solution
 
-I like Kriesi’s solution, still I needed something more flexible and customizable. For example, I wanted to control whether the menu would show the first/last links, or the next/prev links, based on the style and layout of the theme I was currently developing. Also, I wanted to decide whether to adopt the [BEM syntax](https://bem.info/) in the links.
+I like [Kriesi’s solution](http://www.kriesi.at/archives/how-to-build-a-wordpress-post-pagination-without-plugin), still I needed something more flexible and customizable. For example, I wanted to control whether the menu would show the first/last links, or the next/prev links, based on the style and layout of the theme I was currently developing. Also, I wanted to decide whether to adopt the [BEM syntax](https://bem.info/) in the links.
 
 Alright, before you start looking for a *TL;DR* chapter, let’s see how to use this thing.
 
