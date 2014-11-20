@@ -167,7 +167,7 @@ will echo on the page the following HTML:
 
 #### Changing default arguments
 
-Let’s display a menu with a BEM CSS class prefix, reduced range, no first and last links, and no page counting.
+Let’s display a menu with BEM syntax, reduced range, no first and last links, and no page counting.
 
 ```php
 the_pagination( array(
