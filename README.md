@@ -137,7 +137,6 @@ As you see, we get an array of page links. Each one of them is an object contain
 #### Displaying the pagination menu
 
 ```php
-<?php
 // In your template
 if ( function_exists( 'the_pagination' ) ) the_pagination();
 ```
